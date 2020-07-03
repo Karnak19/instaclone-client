@@ -1,8 +1,10 @@
 import React from 'react';
 import { Navbar, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Navigation() {
+  const user = useSelector((state) => state.user);
   return (
     <Navbar
       fixed="top"
@@ -24,8 +26,13 @@ function Navigation() {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink tag={Link} to="https://github.com/reactstrap/reactstrap">
-            GitHub
+          <NavLink tag={Link} to={`/${user.id}`}>
+            <img
+              src={user.avatar}
+              alt={user.email}
+              className="img-fluid rounded-circle"
+              style={{ height: 30, border: '1px solid grey' }}
+            />
           </NavLink>
         </NavItem>
       </Nav>

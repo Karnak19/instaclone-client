@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container } from 'reactstrap';
+import { useSelector } from 'react-redux';
+
 import Navigation from './Navigation';
 
 function Layout({ children }) {
+  const isAuth = useSelector((state) => state.isAuth);
   return (
     <>
-      <Navigation />
+      {isAuth && <Navigation />}
       <Container style={{ marginTop: 70 }}>{children}</Container>
     </>
   );

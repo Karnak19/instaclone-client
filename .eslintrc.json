@@ -16,5 +16,12 @@
     "sourceType": "module"
   },
   "plugins": ["react"],
-  "rules": {}
+  "rules": {
+    "react/jsx-props-no-spreading": [
+      1,
+      {
+        "exceptions": ["Route", "Component"]
+      }
+    ]
+  }
 }
