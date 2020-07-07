@@ -9,6 +9,8 @@ import {
   Spinner,
 } from 'reactstrap';
 import Axios from 'axios';
+import { toast } from 'react-toastify';
+
 import RegisterForm from './RegisterForm';
 
 function RegisterModal({ isOpen, toggle }) {
@@ -37,7 +39,7 @@ function RegisterModal({ isOpen, toggle }) {
         `${process.env.REACT_APP_API_BASE_URL}/auth/register`,
         values
       );
-      // TODO: add react-toastify here
+      toast(`🔥  Wow ! Welcome ${data.username} !`);
       toggle();
     } catch (error) {
       //

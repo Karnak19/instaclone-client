@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
 import 'bootswatch/dist/flatly/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Router from './Router';
 import store from './store';
