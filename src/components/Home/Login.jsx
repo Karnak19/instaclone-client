@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
+
+import Register from '../Register';
 import LoginForm from './LoginForm';
 
 function Login() {
@@ -32,7 +33,7 @@ function Login() {
           className="p-3 mt-2 text-center"
           style={{ border: '1px solid grey' }}
         >
-          Pas de compte ? <Link to="/register">Inscrivez-vous</Link>
+          <Register />
         </Col>
       </Col>
     </Row>

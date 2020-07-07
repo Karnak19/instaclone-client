@@ -6,13 +6,13 @@ import Post from './Post';
 
 function Content() {
   const [posts, setPosts] = useState([]);
-  const { id } = useParams();
+  const { username } = useParams();
 
   useEffect(() => {
     const getDatas = async () => {
       try {
         const { data } = await Axios.get(
-          `${process.env.REACT_APP_API_BASE_URL}/api/v1/users/${id}/posts`
+          `${process.env.REACT_APP_API_BASE_URL}/api/v1/users/${username}/posts`
         );
 
         setPosts(data);
@@ -32,7 +32,7 @@ function Content() {
             image={post.image}
             id={post.id}
             key={post.id}
-            userId={post.userId}
+            username={post.username}
           />
         );
       })}

@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import Layout from './layout';
 import Home from './components/Home';
 import User from './components/User';
-import Register from './components/Register';
 
 function AuthRoute({ component: Component, ...rest }) {
   const token = useSelector((state) => state.token);
@@ -24,8 +23,7 @@ function Router() {
       <Layout>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/register" component={Register} />
-          <AuthRoute path="/:id" component={User} />
+          <AuthRoute path="/:username" component={User} />
         </Switch>
       </Layout>
     </BrowserRouter>

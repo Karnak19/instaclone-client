@@ -26,7 +26,7 @@ function Navigation() {
           </NavLink>
         </NavItem>
         <NavItem>
-          <NavLink tag={Link} to={`/${user.id}`}>
+          <NavLink tag={Link} to={`/${user.username}`}>
             <img
               src={user.avatar}
               alt={user.email}

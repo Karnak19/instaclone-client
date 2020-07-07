@@ -5,13 +5,13 @@ import Axios from 'axios';
 
 function Header() {
   const [user, setUser] = useState({});
-  const { id } = useParams();
+  const { username } = useParams();
 
   useEffect(() => {
     const getDatas = async () => {
       try {
         const { data } = await Axios.get(
-          `${process.env.REACT_APP_API_BASE_URL}/api/v1/users/${id}`
+          `${process.env.REACT_APP_API_BASE_URL}/api/v1/users/${username}`
         );
 
         setUser(data);
@@ -34,12 +34,15 @@ function Header() {
       <Col>
         <Row>
           <Col xs={12}>
-            <h1 style={{ fontSize: 28 }}>{user.email}</h1>
+            <h1 style={{ fontSize: 28 }}>{user.username}</h1>
           </Col>
-          <Col>
-            <h2
-              style={{ fontSize: 16 }}
-            >{`${user.firstName} ${user.lastName}`}</h2>
+          <Col xs={12}>
+            <h2 style={{ fontSize: 16 }}>
+              {`${user.firstName} ${user.lastName}`}
+            </h2>
+          </Col>
+          <Col xs={12}>
+            <p>{user.desc}</p>
           </Col>
         </Row>
       </Col>

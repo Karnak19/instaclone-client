@@ -21,6 +21,7 @@ function LoginForm() {
     password: '',
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [loginSuccess, setLoginSuccess] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [errors, setErrors] = useState(null);
@@ -42,7 +43,7 @@ function LoginForm() {
         `${process.env.REACT_APP_API_BASE_URL}/auth/login`,
         datas
       );
-
+      setLoginSuccess(true);
       dispatch({ type: LOGIN, payload: data });
     } catch (error) {
       setIsError(true);
@@ -85,9 +86,12 @@ function LoginForm() {
         </InputGroup>
       </FormGroup>
       <FormGroup>
-        <Button block color="info" disabled={isLoading}>
-          Connection
-          {isLoading && <Spinner size="sm" className="ml-3" />}
+        <Button
+          block
+          color={loginSuccess ? 'success' : 'info'}
+          disabled={isLoading}
+        >
+          {isLoading ? <Spinner size="sm" className="ml-3" /> : 'Connexion'}
         </Button>
       </FormGroup>
     </Form>

@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Col, Modal, Row } from 'reactstrap';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
 
-function Post({ id, desc, image, userId }) {
+function Post({ id, desc, image, username }) {
   const [user, setUser] = useState({});
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
-      const { data } = await Axios(
-        `${process.env.REACT_APP_API_BASE_URL}/api/v1/users/${userId}`
+      const { data } = await Axios.get(
+        `${process.env.REACT_APP_API_BASE_URL}/api/v1/users/${username}`
       );
       setUser(data);
     };
-    getUser();
+
+    if (user && isOpen === true) getUser();
   }, [isOpen]);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -33,6 +35,7 @@ function Post({ id, desc, image, userId }) {
           <Col xs={7}>
             <img src={image} className="img-fluid" alt="" onClick={toggle} />
           </Col>
+          {/* TODO: Move the following to a new component */}
           <Col xs={5}>
             <Row>
               <Col xs={12}>
@@ -45,7 +48,7 @@ function Post({ id, desc, image, userId }) {
                     />
                   </Col>
                   <Col>
-                    <Link to={`/${user.id}`}>{user.email}</Link>
+                    <Link to={`/${user.username}`}>{user.email}</Link>
                   </Col>
                 </Row>
               </Col>
@@ -58,5 +61,12 @@ function Post({ id, desc, image, userId }) {
     </Col>
   );
 }
+
+Post.propTypes = {
+  id: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  desc: PropTypes.string.isRequired,
+};
 
 export default Post;
